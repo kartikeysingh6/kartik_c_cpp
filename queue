@@ -1,41 +1,52 @@
-#include<iostream>
-#include<conio.h>
-
+#include <iostream>
 using namespace std;
+int main(){ int ch,Q[100],enq,f=-1,r=-1,n=5;
 
-int main(){
-    int a[5],c=0,t,back=-1;
-    
-while(c!=4){
-    
-    cout<<"\nEnter your choice: ";
-    cout<<"\n1.Enqueue";
-    cout<<"\n2.Dequeue";
-    cout<<"\n3.Look";
-    cout<<"\n4.Exit\n";
-    cin>>c;
-    
-    switch(c){
-        
-        case 1: if(back==4)
-                cout<<"Queue if full!\n";
-                else{
-                    cout<<"Enter and element: ";
-                    cin>>t;
-                    a[++back]=t;}
-                    break;
-        case 2: if(back==-1)
-                cout<<"Queue if empty!\n";
-                else{
-                cout<<"Removed element is "<<a[0];
-                --back;}
-                break;
-        case 3: if(back==-1)
-                cout<<"Queue if empty!\n";
-                else
-                cout<<"Element at last is "<<a[back]<<" and element at front is "<<a[0];
-                break;
-        case 4: cout<<"Exiting program...";
+cout<<"Size of Queue is: "<<n<<endl;
+while(ch!=4){
+	cout<<endl<<"1.Push"<<endl;
+	cout<<"2.Pop"<<endl;
+	cout<<"3.Peek"<<endl;
+	cout<<"4.Exit"<<endl;
+	cin>>ch;
+	switch(ch){
+		case 1: if(r-f==(n-1))  //when the difference between front and rear pointer equal the size it means will reached the limit
+				cout<<"Queue is full"<<endl;
+				else if(f==-1){
+					cout<<"Enter element: "<<endl;  //first time running the program
+					cin>>enq;
+					Q[++r]=enq;
+					++f;}
+				else{
+					cout<<"Enter element: "<<endl;
+					cin>>enq;
+					Q[++r]=enq;
+				}
+				break;
+		case 2: if(f>r || f==-1) //front will only exceed the rear iff 1 element is left and you have deleted it
+				cout<<"Queue is empty"<<endl;
+				else{
+					cout<<"Popped element is: "<<Q[f]<<endl;
+					++f;
+				}
+				break;
+		case 3: if(f>r || f==-1)
+				cout<<"Queue is empty"<<endl;
+				else{
+					for(int i=f;i<=r;i++)
+					cout<<Q[i]<<" ";
+				}
+				break;
+		case 4: cout<<"Exiting Program..."<<endl;
+				break;
+		default: cout<<"Invalid Input!"<<endl;
+				break;
+		
+		
+	}			
+	
 }
-}
+
+	
+	return 0;
 }
